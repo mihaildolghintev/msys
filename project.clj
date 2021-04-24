@@ -9,5 +9,5 @@
                  [ring/ring-json "0.5.1"]
                  [compojure "1.6.2"]
                  [com.novemberain/monger "3.1.0"]
-                 [com.brunobonacci/mulog "0.7.1"]]
+                 ]
   :repl-options {:init-ns msys.core})

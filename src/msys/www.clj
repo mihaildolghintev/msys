@@ -3,14 +3,16 @@
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
             [mount.core :as mount]
             [compojure.core :as c]
+            [msys.categories.routes :refer [category-routes]]
             [msys.handlers.category :as category-handlers]))
+
+(declare www-conn)
 
 (c/defroutes routes
   (c/context "/" []
     (c/GET "/" request {:status 200
                         :body "OKaf"})
-    (c/context "/categories" []
-      (c/GET "/" request (category-handlers/categories-list request)))))
+    category-routes))
 
 (def app
   (-> routes

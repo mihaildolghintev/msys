@@ -4,15 +4,17 @@
             [mount.core :as mount]
             [compojure.core :as c]
             [msys.categories.routes :refer [category-routes]]
-            [msys.handlers.category :as category-handlers]))
+            [msys.agents.routes :refer [agents-routes]]
+            ))
 
 (declare www-conn)
 
 (c/defroutes routes
   (c/context "/" []
-    (c/GET "/" request {:status 200
+    (c/GET "/" _request {:status 200
                         :body "OKaf"})
-    category-routes))
+    category-routes
+    agents-routes))
 
 (def app
   (-> routes

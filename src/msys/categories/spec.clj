@@ -1,7 +1,5 @@
 (ns msys.categories.spec
   (:require [clojure.spec.alpha :as s]
-            [monger.collection :as mc]
-            [msys.db :as db]
             [msys.utils.validator :refer [problem->text]]))
 
 (s/def :subcategory/_id string?)

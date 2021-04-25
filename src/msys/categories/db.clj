@@ -21,8 +21,8 @@
                            {:_id (ObjectId. category-id)})
        :subcategories
        (filter #(= % subcategory-name))
-       empty?
-       not))
+       seq
+       ))
 
 (defn get-categories []
   {:post [(or (s/valid? :category/categories %)

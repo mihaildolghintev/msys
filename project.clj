@@ -8,6 +8,7 @@
                  [ring "1.9.2"]
                  [ring/ring-json "0.5.1"]
                  [compojure "1.6.2"]
+                 [clojure.java-time "0.3.2"]
                  [com.novemberain/monger "3.1.0"]
                  ]
   :repl-options {:init-ns msys.core})

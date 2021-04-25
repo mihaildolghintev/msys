@@ -2,7 +2,7 @@
   (:require [msys.categories.db :as cdb]
             [clojure.spec.alpha]))
 
-(defn get-categories [request]
+(defn get-categories [_request]
   (try
     {:status 200
      :body (cdb/get-categories)}

@@ -1,7 +1,7 @@
 (ns msys.db
   (:require [monger.core :as mg]
             [mount.core :as mount]
-            [monger.collection :as mc]))
+            ))
 
 (declare db-conn)
 

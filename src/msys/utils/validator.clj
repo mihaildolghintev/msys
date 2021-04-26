@@ -1,4 +1,5 @@
-(ns msys.utils.validator)
+(ns msys.utils.validator
+  (:require [clojure.spec.alpha :as s]))
 
 (defmulti problem->text
   (fn [spec]
@@ -7,10 +8,16 @@
       (peek via))))
 
 
+
 (defmethod problem->text :default [_]
   "Something wrong")
 
 (defmethod problem->text nil [_]
   nil)
 
+(defn validate [spec value & [data]]
+  (or (s/valid? spec value)
+      (throw (ex-info (problem->text (s/explain-data spec value)) (if (data)
+                                                                    data
+                                                                    {})))))
 

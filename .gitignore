@@ -3,6 +3,7 @@
 /checkouts
 /.calva
 /.idea
+/.lsp
 profiles.clj
 pom.xml
 pom.xml.asc

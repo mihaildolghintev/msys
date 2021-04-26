@@ -34,7 +34,7 @@
   {:pre [(or (s/valid? :category/name category-name)
              (throw (ex-info (problem->text (s/explain-data :category/name category-name))
                              {})))]
-   :post (s/valid? :category/category)}
+   :post (s/valid? :category/category %)}
 
   (if (category-exists? {:by :name
                          :value category-name})
@@ -43,7 +43,7 @@
         (update :_id str))))
 
 (defn create-subcatetory [category-id subcategory-name]
-  {:post [(s/valid? :category/category)]}
+  {:post [(s/valid? :category/category %)]}
   (if (subcategory-exists? category-id subcategory-name)
     (throw (ex-info "Subcategory already exists" {}))
     (do (mc/update (db/get-db) "categories"
@@ -54,7 +54,7 @@
             (update :_id str)))))
 
 (defn update-category [category-id new-category-name]
-  {:post [(s/valid? :category/category)]}
+  {:post [(s/valid? :category/category %)]}
   (cond
     (category-exists? {:by :id
                        :value category-id})
@@ -68,7 +68,7 @@
     :else (throw (ex-info "Category not found" {}))))
 
 (defn update-subcategory [category-id old-subcategory-name subcategory-name]
-  {:post [(s/valid? :category/category)]}
+  {:post [(s/valid? :category/category %)]}
   (let [current-category (mc/find-map-by-id (db/get-db) "categories" (ObjectId. category-id))
         current-subcategories (:subcategories current-category)
         updated-subcategories (map

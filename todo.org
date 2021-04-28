@@ -1,0 +1,1 @@
+* TODO handle error when delete category. When id not found

@@ -1,7 +1,7 @@
 (ns msys.categories.db
   (:require [msys.db :as db]
             [msys.categories.spec]
-            [msys.utils.validator :refer [problem->text]]
+            [msys.utils.validator :refer [problem->text validate]]
             [clojure.string :as str]
             [clojure.spec.alpha :as s]
             [monger.operators :refer [$push $set]]
@@ -41,6 +41,10 @@
     (throw (ex-info "Category already exists" {}))
     (-> (mc/insert-and-return (db/get-db) "categories" {:name (str/lower-case category-name)})
         (update :_id str))))
+
+(defn remove-category [category-id]
+  {:pre [(validate :category/_id category-id)]}
+  (mc/remove-by-id (db/get-db) "categories" (ObjectId. category-id)))
 
 (defn create-subcatetory [category-id subcategory-name]
   {:post [(s/valid? :category/category %)]}

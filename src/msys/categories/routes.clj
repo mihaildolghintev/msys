@@ -8,6 +8,7 @@
              (c/POST "/create" request (handlers/create-category request))
              (c/POST "/update-category" request (handlers/update-category request))
              (c/POST "/create-subcategory" request (handlers/create-subcategory request))
-             (c/POST "/update-subcategory" request (handlers/update-subcategory request))))
+             (c/POST "/update-subcategory" request (handlers/update-subcategory request))
+             (c/POST "/remove" request (handlers/remove-category request))))
 
 

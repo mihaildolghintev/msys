@@ -13,9 +13,19 @@
 (defn create-category [request]
   (let [category-name (get-in request [:body :category-name])]
     (try
-
       {:status 200
        :body (cdb/create-category category-name)}
+      (catch Exception e
+        {:status 500
+         :body {:error true
+                :message (ex-message e)}}))))
+
+(defn remove-category [request]
+  (let [category-id (get-in request [:body :category-id])]
+    (try
+      (cdb/remove-category category-id)
+      {:status 200
+       :body "OK"}
       (catch Exception e
         {:status 500
          :body {:error true

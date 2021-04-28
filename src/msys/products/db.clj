@@ -26,6 +26,8 @@
   (->> (mc/find-maps (db/get-db) "cash-list")
        (map :cash)))
 
+(<-product-id-list)
+
 
 (defn parse-id [str-id]
   (-> str-id
